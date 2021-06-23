@@ -11,10 +11,10 @@ const profile = {
 module.exports = {
   resume: async (req, res) => {
     const { user } = req.body
-    const session = zowe.ZosmfSession.createSessCfgFromArgs(profile)
+    const session = zowe.ZosmfSession.createBasicZosmfSession(profile)
     const { commandResponse } = zowe.IssueTso.issueTsoCommand(
       session,
-      "fb3",
+      "ACCT#",
       `ALU ${user} RESUME`
     )
     return res.json({
@@ -24,10 +24,11 @@ module.exports = {
   },
   revoke: async (req, res) => {
     const { user } = req.body
-    const session = zowe.ZosmfSession.createSessCfgFromArgs(profile)
+    const session = zowe.ZosmfSession.createBasicZosmfSession(profile)
+    console.log(session)
     const { commandResponse } = zowe.IssueTso.issueTsoCommand(
       session,
-      "fb3",
+      "ACCT#",
       `ALU ${user} REVOKE`
     )
     return res.json({
