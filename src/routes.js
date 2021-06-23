@@ -5,6 +5,6 @@ const ZoweController = require("./controllers/ZoweController")
 const routes = Router()
 
 routes.post("/resume", ZoweController.resume)
-// routes.post("/revoke", ZoweController.revoke)
+routes.post("/revoke", ZoweController.revoke)
 
 module.exports = routes
